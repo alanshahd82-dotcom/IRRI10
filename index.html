@@ -132,6 +132,8 @@ header.scrolled{box-shadow:var(--sh)}
 .cat-card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px 12px;text-align:center;transition:.25s;cursor:pointer}
 .cat-card:hover{transform:translateY(-6px);box-shadow:var(--sh2);border-color:var(--teal)}
 .cat-card svg{width:52px;height:52px;margin:0 auto 12px}
+.cat-card .cat-img{width:76px;height:76px;border-radius:50%;object-fit:cover;margin:0 auto 14px;display:block;box-shadow:0 4px 14px rgba(0,0,0,.18);border:3px solid #fff;transition:transform .3s,box-shadow .3s}
+.cat-card:hover .cat-img{transform:scale(1.08);box-shadow:0 6px 22px rgba(38,181,200,.35)}
 .cat-card b{font-size:.85rem;display:block}
 .cat-card span{font-size:.72rem;color:var(--muted)}
 @media(max-width:920px){.cat-grid{grid-template-columns:repeat(3,1fr)}}
@@ -592,6 +594,7 @@ ar:{promo:"☀️ عرض الإطلاق: -10% على الأطقم بكود SOLAI
 const t = k => (I18N[lang] && I18N[lang][k]) || I18N.fr[k] || k;
 
 const CATS = {panneaux:'i-panel',onduleurs:'i-inverter',batteries:'i-battery',kits:'i-kit',pompage:'i-pump',accessoires:'i-reg'};
+const CAT_IMGS = {panneaux:'img/panel.jpg',onduleurs:'img/inverter.jpg',batteries:'img/lithium.jpg',kits:'img/kit.jpg',pompage:'img/pump.jpg',accessoires:'img/mppt.jpg'};
 const PRODUCTS = [
  {id:1,cat:'panneaux',name:'Panneau Solaire Monocristallin 550W',specs:['550W','21,3%','25 ans'],price:1350,old:1600,badge:'Promo',bc:'b-promo',icon:'i-panel',img:'img/panel.jpg',rate:'4,8',rev:124},
  {id:2,cat:'onduleurs',name:'Onduleur Hybride 5 kW',specs:['5 kW','48V','MPPT'],price:9500,badge:'Best-seller',bc:'b-best',icon:'i-inverter',img:'img/inverter.jpg',rate:'4,9',rev:58},
@@ -622,7 +625,8 @@ function renderCats(){
   $('#catGrid').innerHTML = Object.keys(CATS).map((c,i)=>{
     const n = PRODUCTS.filter(p=>p.cat===c).length;
     return `<div class="cat-card reveal visible" data-cat="${c}">
-      <svg><use href="#${CATS[c]}"/></svg><b>${t('cat_'+c)}</b><span>${n} ${t('produits')}</span></div>`;
+      <img class="cat-img" src="${CAT_IMGS[c]}" alt="${t('cat_'+c)}" loading="lazy">
+      <b>${t('cat_'+c)}</b><span>${n} ${t('produits')}</span></div>`;
   }).join('');
   $$('#catGrid .cat-card').forEach(el=>el.onclick=()=>{
     filter = el.dataset.cat; renderTabs(); renderProducts();
