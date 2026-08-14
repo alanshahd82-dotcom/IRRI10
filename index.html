@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<!--
+  ═══════════════════════════════════════════════════════
+  IRRI10 — Démo boutique solaire V2 (صور حقيقية)
+  البنية المطلوبة في الـ Repository:
+    index.html
+    img/  (panel.jpg, inverter.jpg, lithium.jpg, gel.jpg,
+           kit.jpg, pump.jpg, mppt.jpg, hero.jpg,
+           team.jpg, irrigation.jpg)
+  ⚠️ غيّر رقم الواتساب في المتغير WHATSAPP داخل السكربت
+  ═══════════════════════════════════════════════════════
+-->
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IRRI10 — Énergie Solaire au Maroc | Panneaux, Kits & Pompage</title>
+<meta name="description" content="IRRI10 Énergie Solar Systems — Panneaux solaires, onduleurs, batteries et kits complets au Maroc. Paiement à la livraison, garantie et SAV. RC 18065 Béni Mellal.">
+<meta property="og:title" content="IRRI10 — Énergie Solaire au Maroc">
+<meta property="og:description" content="Boutique solaire professionnelle : panneaux, kits maison & pompage, calculateur gratuit.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 3C32 3 11 28 11 42a21 21 0 0 0 42 0C53 28 32 3 32 3Z' fill='%2326B5C8'/%3E%3Ccircle cx='40' cy='26' r='8' fill='%23F7941D'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0E2A3B; --navy2:#123A52; --orange:#F7941D; --orange-d:#DE7C00;
+  --green:#43A047; --teal:#26B5C8; --wa:#25D366;
+  --bg:#F7FAFC; --card:#fff; --text:#1D3448; --muted:#5B7183; --line:#E3ECF2;
+  --r:16px; --sh:0 10px 30px rgba(14,42,59,.08); --sh2:0 16px 40px rgba(14,42,59,.14);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+body.rtl{font-family:'Cairo',sans-serif}
+img,svg{display:block}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+section{scroll-margin-top:90px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+h1,h2,h3{color:var(--navy);line-height:1.25}
+.sec-head{text-align:center;margin-bottom:42px}
+.sec-head h2{font-size:clamp(1.5rem,3.4vw,2.2rem);font-weight:800}
+.sec-head p{color:var(--muted);margin-top:8px}
+.sec-head .bar{width:64px;height:5px;border-radius:99px;margin:14px auto 0;background:linear-gradient(90deg,var(--orange),var(--teal))}
+
+/* ── Topbar ── */
+.topbar{background:var(--navy);color:#cfe3ef;font-size:.8rem}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px 20px}
+.topbar a{display:flex;align-items:center;gap:6px}
+.topbar .promo{color:#FFD9A0;font-weight:600}
+@media(max-width:720px){.topbar .hide-s{display:none}}
+
+/* ── Header ── */
+header{position:sticky;top:0;z-index:100;background:#ffffffee;backdrop-filter:blur(10px);border-bottom:1px solid var(--line);transition:box-shadow .3s}
+header.scrolled{box-shadow:var(--sh)}
+.nav{display:flex;align-items:center;gap:24px;padding:14px 20px}
+.brand{display:flex;align-items:center;gap:10px;margin-inline-end:auto}
+.brand svg{width:44px;height:44px}
+.brand .bt b{display:block;font-size:1.25rem;font-weight:800;color:var(--navy);letter-spacing:.5px}
+.brand .bt span{font-size:.68rem;color:var(--muted);letter-spacing:.4px;text-transform:uppercase}
+.nav-links{display:flex;gap:4px}
+.nav-links a{padding:8px 14px;border-radius:10px;font-weight:600;font-size:.9rem;color:var(--navy);transition:.2s}
+.nav-links a:hover{background:#EDF6FB;color:var(--teal)}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.lang{display:flex;background:#EDF3F7;border-radius:10px;padding:3px}
+.lang button{padding:5px 10px;border-radius:8px;font-size:.78rem;font-weight:700;color:var(--muted)}
+.lang button.on{background:var(--navy);color:#fff}
+.cart-btn{position:relative;width:44px;height:44px;border-radius:12px;background:var(--navy);display:grid;place-items:center;transition:.2s}
+.cart-btn:hover{background:var(--navy2);transform:translateY(-2px)}
+.cart-btn svg{width:20px;height:20px;stroke:#fff}
+.cart-count{position:absolute;top:-6px;inset-inline-end:-6px;min-width:20px;height:20px;border-radius:99px;background:var(--orange);color:#fff;font-size:.7rem;font-weight:800;display:grid;place-items:center;padding:0 5px}
+.cart-count.bump{animation:bump .3s}
+@keyframes bump{50%{transform:scale(1.35)}}
+.burger{display:none;flex-direction:column;gap:5px;padding:8px}
+.burger span{width:22px;height:2.5px;background:var(--navy);border-radius:2px}
+.mobile-nav{display:none;flex-direction:column;padding:10px 20px 18px;border-top:1px solid var(--line);background:#fff}
+.mobile-nav a{padding:12px 6px;font-weight:600;border-bottom:1px solid var(--line)}
+.mobile-nav.open{display:flex}
+@media(max-width:920px){.nav-links{display:none}.burger{display:flex}}
+
+/* ── Buttons ─ */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:12px;font-weight:700;font-size:.95rem;transition:.25s}
+.btn-primary{background:var(--orange);color:#fff;box-shadow:0 8px 20px rgba(247,148,29,.35)}
+.btn-primary:hover{background:var(--orange-d);transform:translateY(-2px)}
+.btn-ghost{border:2px solid var(--navy);color:var(--navy)}
+.btn-ghost:hover{background:var(--navy);color:#fff}
+.btn-wa{background:var(--wa);color:#fff;box-shadow:0 8px 20px rgba(37,211,102,.3)}
+.btn-wa:hover{filter:brightness(.95);transform:translateY(-2px)}
+
+/* ── Hero ─ */
+.hero{background:linear-gradient(180deg,#EAF6FC 0%,#F7FAFC 100%);padding:70px 0 80px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);padding:7px 14px;border-radius:99px;font-size:.78rem;font-weight:600;color:var(--navy);box-shadow:var(--sh)}
+.hero h1{font-size:clamp(1.9rem,4.4vw,3rem);font-weight:800;margin:18px 0 16px}
+.hero h1 em{font-style:normal;color:var(--orange)}
+.hero p.sub{color:var(--muted);font-size:1.05rem;max-width:520px;margin-bottom:28px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.hero-stats{display:flex;gap:26px;margin-top:36px;flex-wrap:wrap}
+.hstat b{display:block;font-size:1.3rem;color:var(--navy)}
+.hstat span{font-size:.8rem;color:var(--muted)}
+.hero-art{position:relative}
+.hero-photo{border-radius:24px;overflow:hidden;box-shadow:var(--sh2);aspect-ratio:4/3.1;position:relative;background:linear-gradient(135deg,#BEE3F2,#DFF3E4)}
+.hero-photo .ph-logo{position:absolute;width:120px;height:120px;inset:0;margin:auto;opacity:.5}
+.hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(14,42,59,.25))}
+.chip{position:absolute;background:#fff;border-radius:14px;box-shadow:var(--sh2);padding:10px 16px;font-size:.8rem;font-weight:700;color:var(--navy);display:flex;gap:8px;align-items:center;animation:float 5s ease-in-out infinite;z-index:2}
+.chip small{display:block;font-weight:500;color:var(--muted)}
+.chip.c1{top:6%;inset-inline-start:-14px}
+.chip.c2{top:40%;inset-inline-end:-14px;animation-delay:1.2s}
+.chip.c3{bottom:-16px;inset-inline-start:12%;animation-delay:2.2s}
+@keyframes float{50%{transform:translateY(-10px)}}
+@media(max-width:920px){.hero .wrap{grid-template-columns:1fr}.hero{padding:50px 0 60px}}
+
+/* ── Trust badges ── */
+.trust{padding:26px 0;background:#fff;border-block:1px solid var(--line)}
+.trust .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.t-item{display:flex;gap:12px;align-items:center}
+.t-ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;flex-shrink:0}
+.t-ico svg{width:24px;height:24px}
+.t-item b{font-size:.88rem;display:block}
+.t-item span{font-size:.75rem;color:var(--muted)}
+@media(max-width:920px){.trust .wrap{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.trust .wrap{grid-template-columns:1fr}}
+
+/* ── Categories ── */
+.cats{padding:80px 0 30px}
+.cat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.cat-card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px 12px;text-align:center;transition:.25s;cursor:pointer}
+.cat-card:hover{transform:translateY(-6px);box-shadow:var(--sh2);border-color:var(--teal)}
+.cat-card svg{width:52px;height:52px;margin:0 auto 12px}
+.cat-card b{font-size:.85rem;display:block}
+.cat-card span{font-size:.72rem;color:var(--muted)}
+@media(max-width:920px){.cat-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:520px){.cat-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ── Products ── */
+.shop{padding:50px 0 80px}
+.shop-tools{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tab{padding:8px 16px;border-radius:99px;background:#fff;border:1px solid var(--line);font-size:.82rem;font-weight:600;color:var(--muted);transition:.2s}
+.tab.on,.tab:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.search{position:relative}
+.search input{width:250px;max-width:70vw;padding:11px 16px;padding-inline-start:40px;border-radius:12px;border:1px solid var(--line);background:#fff;font-family:inherit;font-size:.88rem;outline:none;transition:.2s}
+.search input:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(38,181,200,.15)}
+.search svg{position:absolute;inset-inline-start:13px;top:50%;transform:translateY(-50%);width:17px;height:17px;stroke:var(--muted)}
+.p-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+@media(max-width:1020px){.p-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){.p-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.p-grid{grid-template-columns:1fr}}
+.p-card{background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:.25s}
+.p-card:hover{transform:translateY(-6px);box-shadow:var(--sh2)}
+.p-media{position:relative;height:190px;display:grid;place-items:center;background:linear-gradient(135deg,#EAF6FC,#F0FBF4);overflow:hidden}
+.p-media .ph{width:100px;height:100px;opacity:.9}
+.p-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.p-card:hover .p-media img{transform:scale(1.07)}
+.p-badge{position:absolute;top:12px;inset-inline-start:12px;padding:4px 12px;border-radius:99px;font-size:.7rem;font-weight:700;color:#fff;z-index:2}
+.b-promo{background:#E53935}.b-best{background:var(--orange)}.b-new{background:var(--green)}
+.p-body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.p-cat{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--teal)}
+.p-body h3{font-size:.95rem;font-weight:700;min-height:2.5em}
+.p-specs{display:flex;flex-wrap:wrap;gap:6px}
+.p-specs span{font-size:.68rem;background:#EDF3F7;color:var(--muted);padding:3px 9px;border-radius:99px;font-weight:600}
+.p-rate{font-size:.78rem;color:var(--orange);font-weight:700}
+.p-rate span{color:var(--muted);font-weight:500}
+.p-foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:8px;padding-top:10px;border-top:1px solid var(--line)}
+.p-price b{font-size:1.02rem;color:var(--navy)}
+.p-price s{font-size:.75rem;color:#B0BEC5;margin-inline-start:6px}
+.stock{font-size:.68rem;color:var(--green);font-weight:700;display:flex;align-items:center;gap:5px}
+.stock::before{content:'';width:7px;height:7px;border-radius:99px;background:var(--green)}
+.p-actions{display:flex;gap:6px}
+.btn-add{width:40px;height:40px;border-radius:11px;background:var(--navy);display:grid;place-items:center;transition:.2s}
+.btn-add:hover{background:var(--orange)}
+.btn-add svg{width:18px;height:18px;stroke:#fff}
+.btn-was{width:40px;height:40px;border-radius:11px;background:#E9FBF0;display:grid;place-items:center;transition:.2s}
+.btn-was:hover{background:var(--wa)}
+.btn-was:hover svg path{fill:#fff}
+.btn-was svg{width:19px;height:19px}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:50px 0}
+
+/* ── Calculator ── */
+.calc{background:var(--navy);padding:85px 0;color:#DCEBF4}
+.calc .wrap{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center}
+.calc h2{color:#fff;font-size:clamp(1.5rem,3.2vw,2.1rem);font-weight:800;margin-bottom:14px}
+.calc p{color:#A9C3D2;margin-bottom:22px}
+.calc ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.calc li{display:flex;gap:10px;align-items:center;font-weight:600;font-size:.92rem}
+.calc li::before{content:'✓';width:24px;height:24px;border-radius:8px;background:rgba(38,181,200,.2);color:var(--teal);display:grid;place-items:center;font-size:.8rem;flex-shrink:0}
+.calc-card{background:#fff;border-radius:20px;padding:28px;box-shadow:0 25px 60px rgba(0,0,0,.3);color:var(--text)}
+.calc-card label{font-size:.8rem;font-weight:700;color:var(--navy);display:block;margin-bottom:6px}
+.calc-card select{width:100%;padding:11px 14px;border-radius:11px;border:1px solid var(--line);font-family:inherit;font-size:.9rem;margin-bottom:16px;background:#fff}
+.appl{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
+.appl label{display:flex;align-items:center;gap:10px;background:#F4F9FC;border:1px solid var(--line);border-radius:11px;padding:10px 14px;font-size:.85rem;font-weight:600;margin:0;cursor:pointer;transition:.2s}
+.appl label:hover{border-color:var(--teal)}
+.appl input{accent-color:var(--orange);width:17px;height:17px}
+.appl small{margin-inline-start:auto;color:var(--muted);font-weight:500}
+#calcResult{margin-top:18px;border-top:2px dashed var(--line);padding-top:18px;display:none}
+#calcResult.show{display:block;animation:fadeUp .5s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}}
+.cr-row{display:flex;justify-content:space-between;font-size:.86rem;padding:5px 0}
+.cr-row b{color:var(--navy)}
+.cr-total{background:linear-gradient(90deg,#FFF3E2,#E9FBF6);border-radius:12px;padding:12px 16px;margin:12px 0;font-weight:800;color:var(--navy);display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+.cr-note{font-size:.72rem;color:var(--muted);margin-top:10px}
+@media(max-width:920px){.calc .wrap{grid-template-columns:1fr}}
+
+/* ── Services / Testimonials / About ── */
+.steps{padding:80px 0}
+.steps .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.step{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:30px 26px;position:relative;transition:.25s}
+.step:hover{transform:translateY(-6px);box-shadow:var(--sh2)}
+.step .n{position:absolute;top:22px;inset-inline-end:22px;font-size:2.4rem;font-weight:800;color:#EDF3F7}
+.step b{font-size:1.02rem;display:block;margin-bottom:6px}
+.step p{font-size:.86rem;color:var(--muted)}
+@media(max-width:820px){.steps .wrap{grid-template-columns:1fr}}
+.testis{background:#fff;padding:80px 0;border-block:1px solid var(--line)}
+.t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.t-card{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:26px}
+.t-card .stars{color:var(--orange);margin-bottom:12px;letter-spacing:2px}
+.t-card p{font-size:.88rem;color:var(--muted);margin-bottom:16px}
+.t-card b{font-size:.85rem;color:var(--navy)}
+.t-card span{display:block;font-size:.74rem;color:var(--muted)}
+@media(max-width:820px){.t-grid{grid-template-columns:1fr}}
+.about{padding:85px 0}
+.about .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
+.about h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:800;margin-bottom:16px}
+.about p{color:var(--muted);margin-bottom:14px;font-size:.95rem}
+.about-photo{border-radius:20px;overflow:hidden;box-shadow:var(--sh2);aspect-ratio:16/9;position:relative;background:linear-gradient(135deg,#BEE3F2,#DFF3E4);margin-top:8px}
+.about-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.legal{background:var(--navy);color:#DCEBF4;border-radius:20px;padding:30px;box-shadow:var(--sh2)}
+.legal h3{color:#fff;margin-bottom:16px;font-size:1.05rem}
+.legal li{list-style:none;font-size:.83rem;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.1);display:flex;gap:8px}
+.legal li:last-child{border:none}
+.legal b{color:var(--teal)}
+@media(max-width:920px){.about .wrap{grid-template-columns:1fr}}
+
+/* ── CTA banner ── */
+.cta-band{background:linear-gradient(100deg,rgba(222,124,0,.92),rgba(14,42,59,.85)),url('img/irrigation.jpg') center/cover;padding:70px 0}
+.cta-band .wrap{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.cta-band h2{color:#fff;font-size:clamp(1.4rem,3vw,2rem);font-weight:800}
+.cta-band p{color:#FFF3E2}
+
+/* ── Footer ─ */
+footer{background:var(--navy);color:#A9C3D2;padding:60px 0 0;font-size:.86rem}
+.f-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.2fr;gap:36px;padding-bottom:44px}
+.f-grid h4{color:#fff;font-size:.95rem;margin-bottom:16px}
+.f-grid a{display:block;padding:4px 0;transition:.2s}
+.f-grid a:hover{color:var(--teal)}
+.f-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.f-brand svg{width:40px;height:40px}
+.f-brand b{color:#fff;font-size:1.15rem}
+.pay-chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.pay-chips span{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);padding:5px 12px;border-radius:8px;font-size:.72rem;font-weight:600}
+.f-bottom{border-top:1px solid rgba(255,255,255,.1);padding:18px 0;text-align:center;font-size:.76rem}
+@media(max-width:920px){.f-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.f-grid{grid-template-columns:1fr}}
+
+/* ── Cart drawer ── */
+.overlay{position:fixed;inset:0;background:rgba(14,42,59,.5);opacity:0;pointer-events:none;transition:.3s;z-index:200}
+.overlay.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;bottom:0;inset-inline-end:0;width:400px;max-width:92vw;background:#fff;z-index:210;transform:translateX(105%);transition:transform .35s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column}
+[dir="rtl"] .drawer{transform:translateX(-105%)}
+.drawer.on{transform:translateX(0)!important}
+.d-head{display:flex;justify-content:space-between;align-items:center;padding:18px 22px;border-bottom:1px solid var(--line)}
+.d-head b{font-size:1.05rem;color:var(--navy)}
+.d-close{font-size:1.4rem;color:var(--muted);line-height:1}
+.d-body{flex:1;overflow-y:auto;padding:18px 22px;display:flex;flex-direction:column;gap:14px}
+.d-empty{text-align:center;color:var(--muted);margin:auto}
+.d-item{display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:13px;padding:10px}
+.d-item .ic{width:52px;height:52px;border-radius:11px;overflow:hidden;background:linear-gradient(135deg,#EAF6FC,#F0FBF4);display:grid;place-items:center;flex-shrink:0}
+.d-item .ic svg{width:32px;height:32px}
+.d-item .ic img{width:100%;height:100%;object-fit:cover}
+.d-item .inf{flex:1;min-width:0}
+.d-item .inf b{font-size:.8rem;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.d-item .inf span{font-size:.78rem;color:var(--orange);font-weight:700}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:24px;height:24px;border-radius:7px;background:#EDF3F7;font-weight:800;color:var(--navy)}
+.qty button:hover{background:var(--teal);color:#fff}
+.d-foot{padding:18px 22px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
+.d-total{display:flex;justify-content:space-between;font-weight:800;color:var(--navy);font-size:1.05rem}
+.d-foot .btn{justify-content:center}
+
+/* ── Toast & WhatsApp float ── */
+.toast{position:fixed;bottom:26px;left:50%;transform:translate(-50%,80px);background:var(--navy);color:#fff;padding:12px 22px;border-radius:12px;font-size:.85rem;font-weight:600;box-shadow:var(--sh2);z-index:300;transition:.35s;opacity:0;display:flex;gap:8px;align-items:center;max-width:90vw}
+.toast.on{transform:translate(-50%,0);opacity:1}
+.wa-float{position:fixed;bottom:22px;inset-inline-end:22px;z-index:150;width:58px;height:58px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 10px 26px rgba(37,211,102,.45);transition:.25s;animation:float 4s ease-in-out infinite}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float svg{width:30px;height:30px}
+
+/* ── Reveal ── */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s,transform .6s}
+.reveal.visible{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<!-- ══ SVG DEFS ══ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<linearGradient id="gWater" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7FD8E8"/><stop offset="1" stop-color="#1899B4"/></linearGradient>
+<linearGradient id="gSun" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFD34D"/><stop offset="1" stop-color="#F7770F"/></linearGradient>
+<linearGradient id="gLeaf" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7CC47F"/><stop offset="1" stop-color="#2E7D32"/></linearGradient>
+<symbol id="i-logo" viewBox="0 0 64 64">
+  <path d="M32 3C32 3 11 28 11 42a21 21 0 0 0 42 0C53 28 32 3 32 3Z" fill="url(#gWater)"/>
+  <circle cx="40" cy="25" r="8" fill="url(#gSun)"/>
+  <g stroke="#F7941D" stroke-width="2" stroke-linecap="round"><path d="M40 13v-3M50 17l2-2M52 25h3"/></g>
+  <path d="M18 44c2-10 12-16 24-14-1 10-9 16-18 16-3 0-5-1-6-2Z" fill="url(#gLeaf)"/>
+  <path d="M20 45c6-6 13-9 20-10" stroke="#ffffffaa" stroke-width="1.5" fill="none"/>
+  <ellipse cx="24" cy="20" rx="4" ry="7" fill="#ffffff55" transform="rotate(-20 24 20)"/>
+</symbol>
+<symbol id="i-panel" viewBox="0 0 64 64"><rect x="6" y="8" width="52" height="36" rx="4" fill="#1B4965"/><path d="M6 20h52M6 32h52M23 8v36M41 8v36" stroke="#ffffff55" stroke-width="2"/><path d="M26 44l-4 12M38 44l4 12M18 56h28" stroke="#0E2A3B" stroke-width="3" stroke-linecap="round" fill="none"/></symbol>
+<symbol id="i-inverter" viewBox="0 0 64 64"><rect x="14" y="8" width="36" height="48" rx="6" fill="#123A52"/><rect x="20" y="15" width="24" height="12" rx="3" fill="#BFF3F9"/><circle cx="24" cy="37" r="3" fill="#7CFC9E"/><circle cx="34" cy="37" r="3" fill="#F7941D"/><path d="M20 46h24" stroke="#ffffff66" stroke-width="3" stroke-linecap="round"/></symbol>
+<symbol id="i-battery" viewBox="0 0 64 64"><rect x="24" y="5" width="6" height="7" rx="2" fill="#0E2A3B"/><rect x="34" y="5" width="6" height="7" rx="2" fill="#0E2A3B"/><rect x="18" y="11" width="28" height="46" rx="6" fill="#2E7D32"/><path d="M35 19l-9 13h7l-3 13 10-15h-7l2-11Z" fill="#fff"/></symbol>
+<symbol id="i-kit" viewBox="0 0 64 64"><circle cx="50" cy="12" r="8" fill="url(#gSun)"/><rect x="4" y="10" width="32" height="24" rx="3" fill="#1B4965"/><path d="M4 18h32M4 26h32M15 10v24M26 10v24" stroke="#ffffff55" stroke-width="1.5"/><rect x="40" y="26" width="18" height="30" rx="4" fill="#2E7D32"/><path d="M50 32l-5 8h4l-2 8 6-9h-4l1-7Z" fill="#fff"/></symbol>
+<symbol id="i-pump" viewBox="0 0 64 64"><path d="M32 5C32 5 16 25 16 37a16 16 0 0 0 32 0C48 25 32 5 32 5Z" fill="url(#gWater)"/><circle cx="32" cy="30" r="7" fill="url(#gSun)"/><path d="M10 56q5 4 11 0t11 0 11 0 11 0" stroke="#26B5C8" stroke-width="3" fill="none" stroke-linecap="round"/></symbol>
+<symbol id="i-reg" viewBox="0 0 64 64"><rect x="12" y="14" width="40" height="36" rx="6" fill="#123A52"/><circle cx="32" cy="29" r="9" fill="#BFF3F9"/><path d="M32 29l5-5" stroke="#0E2A3B" stroke-width="2.5" stroke-linecap="round"/></symbol>
+<symbol id="i-cart" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1.5"/><circle cx="19" cy="21" r="1.5"/><path d="M2 3h3l3.2 13h11.6L23 7H6"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+<symbol id="i-wa" viewBox="0 0 64 64"><path d="M32 6a26 26 0 0 0-22.4 39.2L6 58l15-3.9A26 26 0 1 0 32 6Z" fill="#25D366"/><path d="M24 20c-2 0-4 2-4 5 0 8 9 17 17 17 3 0 5-2 5-4l-1-5-5-1-2 3c-3-1-7-5-8-8l3-2-1-5h-4Z" fill="#fff"/></symbol>
+<symbol id="i-truck" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4h14v12H1zM15 9h4l4 4v3h-8z"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></symbol>
+<symbol id="i-cash" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-head" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M3 12a9 9 0 0 1 18 0"/><rect x="2" y="12" width="4" height="7" rx="2"/><rect x="18" y="12" width="4" height="7" rx="2"/><path d="M20 19a3 3 0 0 1-3 3h-3"/></symbol>
+</defs>
+</svg>
+
+<!-- ══ TOPBAR ══ -->
+<div class="topbar">
+  <div class="wrap">
+    <a href="tel:+212600000000">📞 +212 6 00 00 00 00</a>
+    <span class="promo" data-i18n="promo">☀️ Offre de lancement : -10% sur les kits avec le code SOLAIRE10</span>
+    <span class="hide-s" data-i18n="top_delivery">🚚 Livraison partout au Maroc</span>
+  </div>
+</div>
+
+<!-- ══ HEADER ═ -->
+<header id="header">
+  <div class="wrap nav">
+    <a class="brand" href="#">
+      <svg><use href="#i-logo"/></svg>
+      <span class="bt"><b>IRRI10</b><span data-i18n="brand_sub">Énergie Solar Systems</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#" data-i18n="nav_home">Accueil</a>
+      <a href="#boutique" data-i18n="nav_shop">Boutique</a>
+      <a href="#calculateur" data-i18n="nav_calc">Calculateur</a>
+      <a href="#services" data-i18n="nav_services">Services</a>
+      <a href="#apropos" data-i18n="nav_about">À propos</a>
+      <a href="#contact" data-i18n="nav_contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <div class="lang"><button id="langFr" class="on">FR</button><button id="langAr">عربي</button></div>
+      <button class="cart-btn" id="cartOpen" aria-label="Panier"><svg><use href="#i-cart"/></svg><span class="cart-count" id="cartCount">0</span></button>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="#" data-i18n="nav_home">Accueil</a>
+    <a href="#boutique" data-i18n="nav_shop">Boutique</a>
+    <a href="#calculateur" data-i18n="nav_calc">Calculateur</a>
+    <a href="#services" data-i18n="nav_services">Services</a>
+    <a href="#apropos" data-i18n="nav_about">À propos</a>
+    <a href="#contact" data-i18n="nav_contact">Contact</a>
+  </nav>
+</header>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="hero-badge">🇲🇦 <span data-i18n="hero_badge">Expert solaire à Béni Mellal — RC 18065</span></span>
+      <h1 data-i18n="hero_title">L'énergie solaire pour votre maison, votre ferme et votre entreprise</h1>
+      <p class="sub" data-i18n="hero_sub">Panneaux, onduleurs, batteries et kits complets au meilleur prix. Paiement à la livraison, installation professionnelle et garantie constructeur.</p>
+      <div class="hero-ctas">
+        <a href="#boutique" class="btn btn-primary" data-i18n="cta_shop">Voir la boutique</a>
+        <a href="#calculateur" class="btn btn-ghost" data-i18n="cta_calc">Calculer mon kit solaire</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><b>+500</b><span data-i18n="stat1">clients équipés</span></div>
+        <div class="hstat"><b>25 ans</b><span data-i18n="stat2">garantie panneaux</span></div>
+        <div class="hstat"><b>-70%</b><span data-i18n="stat3">sur votre facture</span></div>
+      </div>
+    </div>
+    <div class="hero-art reveal">
+      <div class="hero-photo">
+        <svg class="ph-logo"><use href="#i-logo"/></svg>
+        <img src="img/hero.jpg" alt="Installation solaire IRRI10 au Maroc" onerror="this.remove()">
+      </div>
+      <div class="chip c1">⚡ <span><b data-i18n="chip1">Kit complet</b><small data-i18n="chip1s">prêt à installer</small></span></div>
+      <div class="chip c2">🔋 <span><b data-i18n="chip2">Batteries lithium</b><small data-i18n="chip2s">6000 cycles</small></span></div>
+      <div class="chip c3">🛡️ <span><b data-i18n="chip3">Garantie 25 ans</b><small data-i18n="chip3s">produits certifiés</small></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TRUST ══ -->
+<div class="trust">
+  <div class="wrap">
+    <div class="t-item reveal"><span class="t-ico" style="background:#FFF3E2"><svg style="stroke:#F7941D"><use href="#i-cash"/></svg></span><span><b data-i18n="badge1_t">Paiement à la livraison</b><span data-i18n="badge1_s">Payez quand vous recevez</span></span></div>
+    <div class="t-item reveal"><span class="t-ico" style="background:#E9FBF6"><svg style="stroke:#26B5C8"><use href="#i-truck"/></svg></span><span><b data-i18n="badge2_t">Livraison rapide</b><span data-i18n="badge2_s">Partout au Maroc, 24-72h</span></span></div>
+    <div class="t-item reveal"><span class="t-ico" style="background:#E9FBF0"><svg style="stroke:#43A047"><use href="#i-shield"/></svg></span><span><b data-i18n="badge3_t">Garantie constructeur</b><span data-i18n="badge3_s">Produits certifiés</span></span></div>
+    <div class="t-item reveal"><span class="t-ico" style="background:#EDF3F7"><svg style="stroke:#123A52"><use href="#i-head"/></svg></span><span><b data-i18n="badge4_t">Support 7j/7</b><span data-i18n="badge4_s">Conseil & SAV WhatsApp</span></span></div>
+  </div>
+</div>
+
+<!-- ══ CATEGORIES ══ -->
+<section class="cats">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2 data-i18n="sec_cat_t">Nos catégories</h2>
+      <p data-i18n="sec_cat_s">Tout l'équipement solaire au même endroit</p>
+      <div class="bar"></div>
+    </div>
+    <div class="cat-grid" id="catGrid"></div>
+  </div>
+</section>
+
+<!-- ══ SHOP ═ -->
+<section class="shop" id="boutique">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2 data-i18n="sec_prod_t">Produits populaires</h2>
+      <p data-i18n="sec_prod_s">Sélection best-sellers et nouveautés</p>
+      <div class="bar"></div>
+    </div>
+    <div class="shop-tools">
+      <div class="tabs" id="tabs"></div>
+      <div class="search">
+        <svg><use href="#i-search"/></svg>
+        <input type="text" id="searchInput" placeholder="Rechercher un produit...">
+      </div>
+    </div>
+    <div class="p-grid" id="pGrid"></div>
+  </div>
+</section>
+
+<!-- ══ CALCULATOR ══ -->
+<section class="calc" id="calculateur">
+  <div class="wrap">
+    <div class="reveal">
+      <h2 data-i18n="sec_calc_t">Calculateur de kit solaire</h2>
+      <p data-i18n="sec_calc_s">Estimez en 30 secondes le kit adapté à vos besoins. Notre équipe valide ensuite le dimensionnement gratuitement.</p>
+      <ul>
+        <li data-i18n="calc_li1">Dimensionnement précis par nos ingénieurs</li>
+        <li data-i18n="calc_li2">Devis gratuit en moins de 24h</li>
+        <li data-i18n="calc_li3">Sans engagement</li>
+      </ul>
+    </div>
+    <div class="calc-card reveal">
+      <label data-i18n="calc_usage">Votre usage</label>
+      <select id="calcUsage">
+        <option value="maison" data-i18n="u_maison">Maison</option>
+        <option value="ferme" data-i18n="u_ferme">Ferme / irrigation</option>
+        <option value="commerce" data-i18n="u_commerce">Commerce</option>
+      </select>
+      <div class="appl" id="applList"></div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center" id="calcBtn" data-i18n="calc_btn">Calculer mon kit</button>
+      <div id="calcResult"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVICES ═ -->
+<section class="steps" id="services">
+  <div class="wrap">
+    <div class="sec-head reveal" style="grid-column:1/-1">
+      <h2 data-i18n="sec_serv_t">Comment ça marche</h2>
+      <div class="bar"></div>
+    </div>
+    <div class="step reveal"><span class="n">01</span><b data-i18n="step1_t">Étude gratuite</b><p data-i18n="step1_s">Analyse de votre consommation, dimensionnement et devis en moins de 24h.</p></div>
+    <div class="step reveal"><span class="n">02</span><b data-i18n="step2_t">Installation professionnelle</b><p data-i18n="step2_s">Techniciens certifiés, matériel garanti et mise en service complète.</p></div>
+    <div class="step reveal"><span class="n">03</span><b data-i18n="step3_t">Suivi & SAV</b><p data-i18n="step3_s">Maintenance, garantie constructeur et support WhatsApp 7j/7.</p></div>
+  </div>
+</section>
+
+<!-- ══ TESTIMONIALS ══ -->
+<section class="testis">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2 data-i18n="sec_test_t">Ils nous font confiance</h2>
+      <div class="bar"></div>
+    </div>
+    <div class="t-grid">
+      <div class="t-card reveal"><div class="stars">★★★★★</div><p>« Installation propre et équipe très sérieuse. Ma facture d'électricité a baissé de 80%. Je recommande vivement. »</p><b>Youssef E.</b><span>Béni Mellal — Kit maison 3 kW</span></div>
+      <div class="t-card reveal"><div class="stars">★★★★★</div><p>« Kit de pompage installé pour ma ferme à El Ksiba. Débit parfait et un suivi après-vente vraiment professionnel. »</p><b>Ahmed M.</b><span>Fquih Ben Salah — Kit pompage 2 kW</span></div>
+      <div class="t-card reveal"><div class="stars">★★★★★</div><p>« Prix imbattables et livraison rapide à Khouribga. Le calculateur m'a aidé à choisir le bon kit du premier coup. »</p><b>Fatima Z.</b><span>Khouribga — Kit maison 5 kW</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section class="about" id="apropos">
+  <div class="wrap">
+    <div class="reveal">
+      <h2 data-i18n="about_t">IRRI10, l'énergie qui a du sens</h2>
+      <p data-i18n="about_p1">Notre logo raconte notre mission : une goutte d'eau, un soleil et une feuille. Nous aidons les familles, les fermes et les entreprises marocaines à produire leur propre énergie propre, économiser jusqu'à 70% sur leurs factures et sécuriser leur alimentation électrique.</p>
+      <p data-i18n="about_p2">Basés à Béni Mellal, nous livrons et installons partout au Maroc avec des produits certifiés et une garantie constructeur réelle.</p>
+      <div class="about-photo"><img src="img/team.jpg" alt="Équipe IRRI10 en installation" loading="lazy" onerror="this.remove()"></div>
+    </div>
+    <div class="legal reveal">
+      <h3 data-i18n="legal_t">📋 Informations légales</h3>
+      <ul>
+        <li><b>Dénomination :</b> IRR10 ENERGIE SOLAR SYSTEMS SARLAU</li>
+        <li><b>RC :</b> N° 18065 — Tribunal de commerce de Béni Mellal</li>
+        <li><b>Capital :</b> 100 000,00 MAD</li>
+        <li><b>Siège :</b> Asaka Ait Woudi Tagzirth, El Ksiba – Taghzirt, Béni Mellal</li>
+        <li><b>Activité :</b> Vente de panneaux solaires & systèmes énergétiques</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ══ -->
+<section class="cta-band" id="contact">
+  <div class="wrap">
+    <div>
+      <h2 data-i18n="cta_t">Un projet solaire ? Parlons-en.</h2>
+      <p data-i18n="cta_s">Un expert vous répond sur WhatsApp, 7j/7.</p>
+    </div>
+    <a class="btn" id="ctaWa" target="_blank" style="background:#fff;color:var(--orange);font-weight:800">
+      <svg style="width:22px;height:22px"><use href="#i-wa"/></svg>
+      <span data-i18n="cta_btn">Discuter avec un expert</span>
+    </a>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="wrap f-grid">
+    <div>
+      <div class="f-brand"><svg><use href="#i-logo"/></svg><b>IRRI10</b></div>
+      <p data-i18n="foot_about">Énergie Solar Systems SARLAU — votre partenaire solaire au Maroc. Vente, installation et maintenance de systèmes solaires.</p>
+      <div class="pay-chips">
+        <span data-i18n="pay1">💵 Paiement à la livraison</span><span>Visa</span><span>Mastercard</span><span data-i18n="pay2">🏦 Virement</span>
+      </div>
+    </div>
+    <div>
+      <h4 data-i18n="foot_links">Liens rapides</h4>
+      <a href="#boutique" data-i18n="nav_shop">Boutique</a>
+      <a href="#calculateur" data-i18n="nav_calc">Calculateur</a>
+      <a href="#services" data-i18n="nav_services">Services</a>
+      <a href="#apropos" data-i18n="nav_about">À propos</a>
+    </div>
+    <div>
+      <h4 data-i18n="foot_cats">Catégories</h4>
+      <a href="#boutique" data-i18n="cat_panneaux">Panneaux solaires</a>
+      <a href="#boutique" data-i18n="cat_onduleurs">Onduleurs hybrides</a>
+      <a href="#boutique" data-i18n="cat_batteries">Batteries</a>
+      <a href="#boutique" data-i18n="cat_kits">Kits solaires</a>
+      <a href="#boutique" data-i18n="cat_pompage">Pompage solaire</a>
+    </div>
+    <div>
+      <h4 data-i18n="foot_contact">Contact</h4>
+      <a href="tel:+212600000000">📞 +212 6 00 00 00 00</a>
+      <a href="mailto:contact@irri10.ma">✉️ contact@irri10.ma</a>
+      <p style="padding:4px 0">📍 Asaka Ait Woudi Tagzirth, El Ksiba – Taghzirt, Béni Mellal, Maroc</p>
+      <p style="padding:4px 0">🕘 <span data-i18n="hours">Lun – Sam : 9h à 19h</span></p>
+    </div>
+  </div>
+  <div class="f-bottom">© 2026 IRRI10 ENERGIE SOLAR SYSTEMS SARLAU — RC 18065 Béni Mellal — <span data-i18n="rights">Tous droits réservés</span></div>
+</footer>
+
+<!-- ══ CART DRAWER ══ -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="Panier">
+  <div class="d-head"><b data-i18n="cart_t">Votre panier</b><button class="d-close" id="cartClose">×</button></div>
+  <div class="d-body" id="dBody"></div>
+  <div class="d-foot">
+    <div class="d-total"><span data-i18n="cart_total">Total</span><span id="dTotal">0 DH</span></div>
+    <a class="btn btn-wa" id="dWa" target="_blank"><svg style="width:20px;height:20px"><use href="#i-wa"/></svg><span data-i18n="cart_wa">Commander via WhatsApp</span></a>
+    <button class="btn btn-ghost" id="dContinue" data-i18n="cart_continue">Continuer mes achats</button>
+  </div>
+</aside>
+
+<div class="toast" id="toast"></div>
+<a class="wa-float" id="waFloat" target="_blank" aria-label="WhatsApp"><svg><use href="#i-wa"/></svg></a>
+
+<script>
+/* ⚠️ ضع رقم واتساب الزبون هنا (بدون +) */
+const WHATSAPP = '212600000000';
+
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+let lang = 'fr', filter = 'tous', q = '', cart = [];
+
+const I18N = {
+fr:{promo:"☀️ Offre de lancement : -10% sur les kits avec le code SOLAIRE10",top_delivery:"🚚 Livraison partout au Maroc",brand_sub:"Énergie Solar Systems",nav_home:"Accueil",nav_shop:"Boutique",nav_calc:"Calculateur",nav_services:"Services",nav_about:"À propos",nav_contact:"Contact",hero_badge:"Expert solaire à Béni Mellal — RC 18065",hero_title:"L'énergie solaire pour votre maison, votre ferme et votre entreprise",hero_sub:"Panneaux, onduleurs, batteries et kits complets au meilleur prix. Paiement à la livraison, installation professionnelle et garantie constructeur.",cta_shop:"Voir la boutique",cta_calc:"Calculer mon kit solaire",stat1:"clients équipés",stat2:"garantie panneaux",stat3:"sur votre facture",chip1:"Kit complet",chip1s:"prêt à installer",chip2:"Batteries lithium",chip2s:"6000 cycles",chip3:"Garantie 25 ans",chip3s:"produits certifiés",badge1_t:"Paiement à la livraison",badge1_s:"Payez quand vous recevez",badge2_t:"Livraison rapide",badge2_s:"Partout au Maroc, 24-72h",badge3_t:"Garantie constructeur",badge3_s:"Produits certifiés",badge4_t:"Support 7j/7",badge4_s:"Conseil & SAV WhatsApp",sec_cat_t:"Nos catégories",sec_cat_s:"Tout l'équipement solaire au même endroit",sec_prod_t:"Produits populaires",sec_prod_s:"Sélection best-sellers et nouveautés",search_ph:"Rechercher un produit...",f_all:"Tous",sec_calc_t:"Calculateur de kit solaire",sec_calc_s:"Estimez en 30 secondes le kit adapté à vos besoins. Notre équipe valide ensuite le dimensionnement gratuitement.",calc_li1:"Dimensionnement précis par nos ingénieurs",calc_li2:"Devis gratuit en moins de 24h",calc_li3:"Sans engagement",calc_usage:"Votre usage",u_maison:"Maison",u_ferme:"Ferme / irrigation",u_commerce:"Commerce",calc_btn:"Calculer mon kit",res_daily:"Consommation estimée",res_panels:"Panneaux",res_inv:"Onduleur",res_bat:"Batterie",res_price:"Estimation",calc_note:"Estimation indicative — une étude gratuite confirme le dimensionnement exact.",cta_devis:"Demander un devis WhatsApp",sec_serv_t:"Comment ça marche",step1_t:"Étude gratuite",step1_s:"Analyse de votre consommation, dimensionnement et devis en moins de 24h.",step2_t:"Installation professionnelle",step2_s:"Techniciens certifiés, matériel garanti et mise en service complète.",step3_t:"Suivi & SAV",step3_s:"Maintenance, garantie constructeur et support WhatsApp 7j/7.",sec_test_t:"Ils nous font confiance",about_t:"IRRI10, l'énergie qui a du sens",about_p1:"Notre logo raconte notre mission : une goutte d'eau, un soleil et une feuille. Nous aidons les familles, les fermes et les entreprises marocaines à produire leur propre énergie propre, économiser jusqu'à 70% sur leurs factures et sécuriser leur alimentation électrique.",about_p2:"Basés à Béni Mellal, nous livrons et installons partout au Maroc avec des produits certifiés et une garantie constructeur réelle.",legal_t:"📋 Informations légales",cta_t:"Un projet solaire ? Parlons-en.",cta_s:"Un expert vous répond sur WhatsApp, 7j/7.",cta_btn:"Discuter avec un expert",foot_about:"Énergie Solar Systems SARLAU — votre partenaire solaire au Maroc. Vente, installation et maintenance de systèmes solaires.",pay1:"💵 Paiement à la livraison",pay2:"🏦 Virement",foot_links:"Liens rapides",foot_cats:"Catégories",foot_contact:"Contact",hours:"Lun – Sam : 9h à 19h",rights:"Tous droits réservés",cart_t:"Votre panier",cart_empty:"Votre panier est vide",cart_total:"Total",cart_wa:"Commander via WhatsApp",cart_continue:"Continuer mes achats",toast_added:"ajouté au panier ✓",in_stock:"En stock",add:"Ajouter",cat_panneaux:"Panneaux solaires",cat_onduleurs:"Onduleurs hybrides",cat_batteries:"Batteries",cat_kits:"Kits solaires",cat_pompage:"Pompage solaire",cat_accessoires:"Accessoires",produits:"produits",empty:"Aucun produit trouvé"},
+ar:{promo:"☀️ عرض الإطلاق: -10% على الأطقم بكود SOLAIRE10",top_delivery:"🚚 توصيل لجميع مدن المغرب",brand_sub:"أنظمة الطاقة الشمسية",nav_home:"الرئيسية",nav_shop:"المتجر",nav_calc:"الحاسبة",nav_services:"خدماتنا",nav_about:"من نحن",nav_contact:"اتصل بنا",hero_badge:"خبير الطاقة الشمسية في بني ملال — RC 18065",hero_title:"الطاقة الشمسية لمنزلك، ضيعتك ومقاولتك",hero_sub:"ألواح، عاكسات، بطاريات وأطقم كاملة بأفضل الأثمنة. الدفع عند الاستلام، تركيب احترافي وضمان المصنع.",cta_shop:"تصفح المتجر",cta_calc:"احسب طقمك الشمسي",stat1:"زبون مجهّز",stat2:"ضمان الألواح",stat3:"من فاتورتك",chip1:"طقم كامل",chip1s:"جاهز للتركيب",chip2:"بطاريات ليثيوم",chip2s:"6000 دورة",chip3:"ضمان 25 سنة",chip3s:"منتوجات مصادق عليها",badge1_t:"الدفع عند الاستلام",badge1_s:"ادفع عند التوصل",badge2_t:"توصيل سريع",badge2_s:"لجميع المدن 24-72 ساعة",badge3_t:"ضمان المصنع",badge3_s:"منتوجات مصادق عليها",badge4_t:"دعم 7/7",badge4_s:"نصح وخدمة واتساب",sec_cat_t:"فئاتنا",sec_cat_s:"كل التجهيزات الشمسية في مكان واحد",sec_prod_t:"منتوجات رائجة",sec_prod_s:"مختارات الأكثر مبيعاً والجديد",search_ph:"ابحث عن منتوج...",f_all:"الكل",sec_calc_t:"حاسبة الأطقم الشمسية",sec_calc_s:"قدّر في 30 ثانية الطقم المناسب لاحتياجك، ثم يتأكد فريقنا من الحساب مجاناً.",calc_li1:"حساب دقيق من مهندسينا",calc_li2:"عرض ثمن مجاني في أقل من 24 ساعة",calc_li3:"بدون التزام",calc_usage:"استعمالك",u_maison:"منزل",u_ferme:"ضيعة / سقي",u_commerce:"محل تجاري",calc_btn:"احسب طقمي",res_daily:"الاستهلاك التقديري",res_panels:"الألواح",res_inv:"العاكس",res_bat:"البطارية",res_price:"التقدير",calc_note:"تقدير استرشادي — دراسة مجانية تؤكد الحساب الدقيق.",cta_devis:"اطلب عرض ثمن عبر واتساب",sec_serv_t:"كيف نعمل",step1_t:"دراسة مجانية",step1_s:"تحليل استهلاكك وحساب الطقم وعرض الثمن في أقل من 24 ساعة.",step2_t:"تركيب احترافي",step2_s:"تقنيون معتمدون، معدات مضمونة وتشغيل كامل.",step3_t:"تتبع وخدمة ما بعد البيع",step3_s:"صيانة، ضمان المصنع ودعم واتساب 7/7.",sec_test_t:"يثقون بنا",about_t:"IRRI10، طاقة لها معنى",about_p1:"شعارنا يحكي مهمتنا: قطرة ماء، شمس وورقة. نساعد العائلات والضيعات والمقاولات المغربية على إنتاج طاقتها النظيفة، توفير حتى 70% من الفاتورة وتأمين التغذية الكهربائية.",about_p2:"مقرنا في بني ملال، ونوصل ونركّب في جميع أنحاء المغرب بمنتوجات مصادق عليها وضمان حقيقي.",legal_t:"📋 معلومات قانونية",cta_t:"عندك مشروع شمسي؟ لنتحدث.",cta_s:"خبير يجيبك على واتساب، 7/7.",cta_btn:"تحدث مع خبير",foot_about:"أنظمة الطاقة الشمسية ش.م.م — شريككم الشمسي في المغرب. بيع، تركيب وصيانة الأنظمة الشمسية.",pay1:"💵 الدفع عند الاستلام",pay2:"🏦 تحويل بنكي",foot_links:"روابط سريعة",foot_cats:"الفئات",foot_contact:"اتصل بنا",hours:"الإثنين – السبت: 9ص إلى 7م",rights:"جميع الحقوق محفوظة",cart_t:"سلة مشترياتك",cart_empty:"سلتك فارغة",cart_total:"المجموع",cart_wa:"اطلب عبر واتساب",cart_continue:"مواصلة التسوق",toast_added:"أُضيف إلى السلة ✓",in_stock:"متوفر",add:"أضف",cat_panneaux:"ألواح شمسية",cat_onduleurs:"عاكسات هجينة",cat_batteries:"بطاريات",cat_kits:"أطقم شمسية",cat_pompage:"ضخ شمسي",cat_accessoires:"ملحقات",produits:"منتوجات",empty:"لا يوجد أي منتوج"}
+};
+const t = k => (I18N[lang] && I18N[lang][k]) || I18N.fr[k] || k;
+
+const CATS = {panneaux:'i-panel',onduleurs:'i-inverter',batteries:'i-battery',kits:'i-kit',pompage:'i-pump',accessoires:'i-reg'};
+const PRODUCTS = [
+ {id:1,cat:'panneaux',name:'Panneau Solaire Monocristallin 550W',specs:['550W','21,3%','25 ans'],price:1350,old:1600,badge:'Promo',bc:'b-promo',icon:'i-panel',img:'img/panel.jpg',rate:'4,8',rev:124},
+ {id:2,cat:'onduleurs',name:'Onduleur Hybride 5 kW',specs:['5 kW','48V','MPPT'],price:9500,badge:'Best-seller',bc:'b-best',icon:'i-inverter',img:'img/inverter.jpg',rate:'4,9',rev:58},
+ {id:3,cat:'batteries',name:'Batterie Lithium LiFePO4 5 kWh',specs:['5 kWh','6000 cycles','BMS'],price:12500,badge:'Nouveau',bc:'b-new',icon:'i-battery',img:'img/lithium.jpg',rate:'4,9',rev:33},
+ {id:4,cat:'kits',name:'Kit Solaire Maison 3 kW',specs:['8×550W','Ond. 3 kW','Câblage'],price:28500,old:32000,badge:'Best-seller',bc:'b-best',icon:'i-kit',img:'img/kit.jpg',rate:'4,8',rev:27},
+ {id:5,cat:'pompage',name:'Kit Pompage Solaire 2 kW',specs:['Pompe 2 kW','Irrigation','Contrôleur'],price:15900,icon:'i-pump',img:'img/pump.jpg',rate:'4,8',rev:19},
+ {id:6,cat:'panneaux',name:'Panneau Solaire Monocristallin 450W',specs:['450W','20,8%','25 ans'],price:1100,icon:'i-panel',img:'img/panel.jpg',rate:'4,7',rev:86},
+ {id:7,cat:'onduleurs',name:'Onduleur Hybride 3 kW',specs:['3 kW','24/48V','WiFi'],price:6800,icon:'i-inverter',img:'img/inverter.jpg',rate:'4,7',rev:41},
+ {id:8,cat:'batteries',name:'Batterie GEL 200Ah 12V',specs:['200Ah','Décharge profonde'],price:2300,icon:'i-battery',img:'img/gel.jpg',rate:'4,6',rev:97},
+ {id:9,cat:'kits',name:'Kit Solaire Ferme 5 kW',specs:['Ond. 5 kW','Batt. 10 kWh','Pompage'],price:46500,badge:'Nouveau',bc:'b-new',icon:'i-kit',img:'img/irrigation.jpg',rate:'4,9',rev:12},
+ {id:10,cat:'accessoires',name:'Régulateur MPPT 60A',specs:['60A','12-48V auto'],price:1450,icon:'i-reg',img:'img/mppt.jpg',rate:'4,7',rev:52}
+];
+const APPL = [
+ {id:'led',w:50,h:6,fr:'Éclairage LED (×5)',ar:'إنارة LED (×5)'},
+ {id:'tv',w:80,h:5,fr:'Téléviseur',ar:'تلفاز'},
+ {id:'fridge',w:150,h:10,fr:'Réfrigérateur',ar:'ثلاجة'},
+ {id:'pump',w:750,h:2,fr:'Pompe à eau',ar:'مضخة ماء'},
+ {id:'ac',w:1200,h:4,fr:'Climatisation',ar:'مكيف'},
+ {id:'pc',w:100,h:4,fr:'Ordinateur / bureau',ar:'حاسوب / مكتب'}
+];
+const PRESETS = {maison:['led','tv','fridge','pc'],ferme:['pump','led'],commerce:['led','fridge','ac','pc']};
+
+const fmt = n => n.toLocaleString('fr-FR').replace(/[\u202F\u00A0]/g,' ') + ' DH';
+const fmt0 = n => n.toLocaleString('fr-FR').replace(/[\u202F\u00A0]/g,' ');
+const waLink = m => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(m)}`;
+
+function renderCats(){
+  $('#catGrid').innerHTML = Object.keys(CATS).map((c,i)=>{
+    const n = PRODUCTS.filter(p=>p.cat===c).length;
+    return `<div class="cat-card reveal visible" data-cat="${c}">
+      <svg><use href="#${CATS[c]}"/></svg><b>${t('cat_'+c)}</b><span>${n} ${t('produits')}</span></div>`;
+  }).join('');
+  $$('#catGrid .cat-card').forEach(el=>el.onclick=()=>{
+    filter = el.dataset.cat; renderTabs(); renderProducts();
+    document.getElementById('boutique').scrollIntoView({behavior:'smooth'});
+  });
+}
+
+function renderTabs(){
+  const keys = ['tous',...Object.keys(CATS)];
+  $('#tabs').innerHTML = keys.map(k=>`<button class="tab ${filter===k?'on':''}" data-f="${k}">${k==='tous'?t('f_all'):t('cat_'+k)}</button>`).join('');
+  $$('#tabs .tab').forEach(b=>b.onclick=()=>{filter=b.dataset.f;renderTabs();renderProducts();});
+}
+
+function renderProducts(){
+  const list = PRODUCTS.filter(p=>(filter==='tous'||p.cat===filter) && p.name.toLowerCase().includes(q));
+  $('#pGrid').innerHTML = list.length ? list.map(p=>`
+   <article class="p-card reveal visible">
+    <div class="p-media">
+      <svg class="ph"><use href="#${p.icon}"/></svg>
+      <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.remove()">
+      ${p.badge?`<span class="p-badge ${p.bc}">${p.badge}</span>`:''}
+    </div>
+    <div class="p-body">
+      <span class="p-cat">${t('cat_'+p.cat)}</span>
+      <h3>${p.name}</h3>
+      <div class="p-specs">${p.specs.map(s=>`<span>${s}</span>`).join('')}</div>
+      <div class="p-rate">★ ${p.rate} <span>(${p.rev} avis)</span></div>
+      <div class="p-foot">
+        <div><div class="p-price"><b>${fmt(p.price)}</b>${p.old?`<s>${fmt(p.old)}</s>`:''}</div><span class="stock">${t('in_stock')}</span></div>
+        <div class="p-actions">
+          <button class="btn-add" data-add="${p.id}" aria-label="${t('add')}"><svg><use href="#i-cart"/></svg></button>
+          <a class="btn-was" target="_blank" href="${waLink(`Bonjour IRRI10, je suis intéressé par : ${p.name} (${fmt(p.price)})`)}" aria-label="WhatsApp"><svg><use href="#i-wa"/></svg></a>
+        </div>
+      </div>
+    </div>
+   </article>`).join('') : `<div class="empty">🔍 ${t('empty')}</div>`;
+  $$('#pGrid [data-add]').forEach(b=>b.onclick=()=>addToCart(+b.dataset.add));
+}
+
+function addToCart(id){
+  const it = cart.find(c=>c.id===id);
+  it ? it.qty++ : cart.push({id,qty:1});
+  const cc = $('#cartCount'); cc.textContent = cart.reduce((s,c)=>s+c.qty,0);
+  cc.classList.remove('bump'); void cc.offsetWidth; cc.classList.add('bump');
+  toast(`${PRODUCTS.find(p=>p.id===id).name} — ${t('toast_added')}`);
+  renderCart();
+}
+function renderCart(){
+  const body = $('#dBody');
+  if(!cart.length){ body.innerHTML = `<div class="d-empty">🛒<br>${t('cart_empty')}</div>`; }
+  else body.innerHTML = cart.map(c=>{
+    const p = PRODUCTS.find(x=>x.id===c.id);
+    return `<div class="d-item">
+      <span class="ic"><img src="${p.img}" alt="" onerror="this.outerHTML='<svg><use href=#${p.icon}></svg>'"><b style="display:none"></b></span>
+      <span class="inf"><b>${p.name}</b><span>${fmt(p.price)}</span></span>
+      <span class="qty"><button data-dec="${c.id}">−</button><b>${c.qty}</b><button data-inc="${c.id}">+</button></span>
+    </div>`;}).join('');
+  const total = cart.reduce((s,c)=>s + c.qty*PRODUCTS.find(p=>p.id===c.id).price,0);
+  $('#dTotal').textContent = fmt(total);
+  $('#dWa').href = cart.length ? waLink(
+    `Bonjour IRRI10 🌞\nJe souhaite commander :\n` +
+    cart.map(c=>{const p=PRODUCTS.find(x=>x.id===c.id);return `• ${c.qty}× ${p.name} — ${fmt(p.price*c.qty)}`;}).join('\n') +
+    `\n💰 Total : ${fmt(total)}`) : '#';
+  $$('#dBody [data-inc]').forEach(b=>b.onclick=()=>{cart.find(c=>c.id==b.dataset.inc).qty++;sync();});
+  $$('#dBody [data-dec]').forEach(b=>b.onclick=()=>{const c=cart.find(x=>x.id==b.dataset.dec);c.qty>1?c.qty--:cart=cart.filter(x=>x.id!=c.id);sync();});
+}
+function sync(){renderCart();$('#cartCount').textContent=cart.reduce((s,c)=>s+c.qty,0);}
+
+const openD = ()=>{ $('#drawer').classList.add('on'); $('#overlay').classList.add('on'); };
+const closeD = ()=>{ $('#drawer').classList.remove('on'); $('#overlay').classList.remove('on'); };
+$('#cartOpen').onclick = openD; $('#cartClose').onclick = closeD;
+$('#overlay').onclick = closeD; $('#dContinue').onclick = closeD;
+
+function renderAppl(){
+  const preset = PRESETS[$('#calcUsage').value];
+  $('#applList').innerHTML = APPL.map(a=>`
+    <label><input type="checkbox" value="${a.id}" ${preset.includes(a.id)?'checked':''}>
+    ${a[lang]||a.fr}<small>${a.w}W • ${a.h}h/j</small></label>`).join('');
+}
+$('#calcUsage').onchange = ()=>{ renderAppl(); $('#calcResult').classList.remove('show'); };
+$('#calcBtn').onclick = ()=>{
+  const sel = APPL.filter(a=>$$('#applList input').find(i=>i.value===a.id)?.checked);
+  if(!sel.length){ toast('⚠️'); return; }
+  const daily = sel.reduce((s,a)=>s+a.w*a.h,0);
+  const peak = sel.reduce((s,a)=>s+a.w,0)*0.7;
+  const nPan = Math.max(1, Math.ceil(daily/3.75/550));
+  const inv = [3,5,6,8,10].find(v=>v>=Math.max(1.5,peak/1000)) || 10;
+  const bat = Math.max(5, Math.ceil(daily*1.3/1000/5)*5);
+  const price = (nPan*1350 + inv*1900 + bat*2400)*1.15;
+  const lo = Math.round(price*0.92/100)*100, hi = Math.round(price*1.08/100)*100;
+  const r = $('#calcResult');
+  r.innerHTML = `
+    <div class="cr-row"><span>${t('res_daily')}</span><b>${fmt0(daily)} Wh/j</b></div>
+    <div class="cr-row"><span>${t('res_panels')}</span><b>${nPan} × 550W (${(nPan*0.55).toFixed(2).replace('.',',')} kWc)</b></div>
+    <div class="cr-row"><span>${t('res_inv')}</span><b>${inv} kVA hybride</b></div>
+    <div class="cr-row"><span>${t('res_bat')}</span><b>${bat} kWh</b></div>
+    <div class="cr-total"><span>${t('res_price')}</span><span>${fmt(lo)} – ${fmt(hi)}</span></div>
+    <a class="btn btn-wa" style="width:100%;justify-content:center" target="_blank"
+       href="${waLink(`Bonjour IRRI10 🌞\nRésultat du calculateur :\n• Usage : ${$('#calcUsage').value}\n• Consommation : ${fmt0(daily)} Wh/j\n• Kit estimé : ${nPan}×550W, onduleur ${inv} kVA, batterie ${bat} kWh\nMerci de m'envoyer un devis.`)}">
+       <svg style="width:20px;height:20px"><use href="#i-wa"/></svg>${t('cta_devis')}</a>
+    <p class="cr-note">${t('calc_note')}</p>`;
+  r.classList.add('show');
+};
+
+let toastTimer;
+function toast(msg){
+  const el = $('#toast'); el.textContent = msg; el.classList.add('on');
+  clearTimeout(toastTimer); toastTimer = setTimeout(()=>el.classList.remove('on'), 2400);
+}
+
+$('#searchInput').oninput = e=>{ q = e.target.value.toLowerCase(); renderProducts(); };
+
+function applyLang(l){
+  lang = l;
+  document.documentElement.lang = l;
+  document.documentElement.dir = l==='ar' ? 'rtl' : 'ltr';
+  document.body.classList.toggle('rtl', l==='ar');
+  $('#langFr').classList.toggle('on', l==='fr');
+  $('#langAr').classList.toggle('on', l==='ar');
+  $$('[data-i18n]').forEach(el=>{ el.textContent = t(el.dataset.i18n); });
+  $('#searchInput').placeholder = t('search_ph');
+  renderCats(); renderTabs(); renderProducts(); renderAppl(); renderCart();
+}
+$('#langFr').onclick = ()=>applyLang('fr');
+$('#langAr').onclick = ()=>applyLang('ar');
+
+const genericWa = waLink('Bonjour IRRI10 🌞, je souhaite parler à un expert solaire.');
+$('#waFloat').href = genericWa; $('#ctaWa').href = genericWa;
+window.addEventListener('scroll',()=>$('#header').classList.toggle('scrolled', scrollY>10));
+$('#burger').onclick = ()=>$('#mobileNav').classList.toggle('open');
+$$('#mobileNav a').forEach(a=>a.onclick=()=>$('#mobileNav').classList.remove('open'));
+
+const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target);} }),{threshold:.12});
+function watchReveals(){ $$('.reveal:not(.visible)').forEach(el=>io.observe(el)); }
+
+applyLang('fr');
+watchReveals();
+</script>
+</body>
+</html>
